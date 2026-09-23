@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Test active script PDF</title>
+
+	<style>
+		.button-holder {
+			display: flex; 
+			flex-direction:column;
+		}
+	</style>
+</head>
+<body>
+<section id = main>
+	<div class=button-holder>
+		<button id = 'show-pdf'>Показать PDF</button>
+	</div>
+</section>
+</body>
+<script>
+let allow = true
+	//script here
+const holder = document.querySelector('section#main > div.button-holder')
+const body = document.querySelector('body')
+body.addEventListener("click", event=> {
+const target = event.target 
+console.log('кликнут объект ' + target.tagName)
+if (target.tagName == 'BUTTON' && target.id == "show-pdf" && allow == true) {
+	getProps()
+}
+})
+async function getProps() {
+	try {
+		const resp = await fetchData()
+		const data = await resp.json()
+		if (data) {
+			allow = false
+		}
+		console.log(resp)
+		console.log(data)
+		data.forEach(x=> {
+			let url = document.createElement('a')
+			url.href = x.url
+			url.classList.add('pdf-link')
+			url.textContent = '📄 ' + x.title
+			holder.appendChild(url)
+		})
+	} 
+	catch(error) {
+		console.log(error)
+	}
+}
+
+
+function fetchData() {
+  const data = [
+    { title: "Отчёт 2023", url: "/docs/report2023.pdf" },
+    { title: "Инструкция", url: "/docs/manual.pdf" }
+  ];
+
+  return {
+    json: () => Promise.resolve(data)
+  };
+}
+</script>
+</html>
