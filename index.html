@@ -1,68 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Test active script PDF</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест Яндекс Метрики</title>
+    
+    <!-- Yandex.Metrika counter -->
+    <<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112966689', 'ym');
 
-	<style>
-		.button-holder {
-			display: flex; 
-			flex-direction:column;
-		}
-	</style>
+    ym(112966689, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/112966689" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #f0f0f0; }
+        .card { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center; }
+        button { margin-top: 1rem; padding: 10px 20px; cursor: pointer; background: #fc3f1d; color: white; border: none; border-radius: 4px; }
+    </style>
 </head>
 <body>
-<section id = main>
-	<div class=button-holder>
-		<button id = 'show-pdf'>Показать PDF</button>
-	</div>
-</section>
+    <div class="card">
+        <h1>Счётчик работает!</h1>
+        <p>Если ты видишь эту страницу, значит сайт загружен.</p>
+        <button onclick="alert('Клик засчитан!')">Нажми меня (тест клика)</button>
+    </div>
 </body>
-<script>
-let allow = true
-	//script here
-const holder = document.querySelector('section#main > div.button-holder')
-const body = document.querySelector('body')
-body.addEventListener("click", event=> {
-const target = event.target 
-console.log('кликнут объект ' + target.tagName)
-if (target.tagName == 'BUTTON' && target.id == "show-pdf" && allow == true) {
-	getProps()
-}
-})
-async function getProps() {
-	try {
-		const resp = await fetchData()
-		const data = await resp.json()
-		if (data) {
-			allow = false
-		}
-		console.log(resp)
-		console.log(data)
-		data.forEach(x=> {
-			let url = document.createElement('a')
-			url.href = x.url
-			url.classList.add('pdf-link')
-			url.textContent = '📄 ' + x.title
-			holder.appendChild(url)
-		})
-	} 
-	catch(error) {
-		console.log(error)
-	}
-}
-
-
-function fetchData() {
-  const data = [
-    { title: "Отчёт 2023", url: "/docs/report2023.pdf" },
-    { title: "Инструкция", url: "/docs/manual.pdf" }
-  ];
-
-  return {
-    json: () => Promise.resolve(data)
-  };
-}
-</script>
 </html>
