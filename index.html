@@ -62,15 +62,19 @@
         <div class="card test-section">
             <h2>2. Клик по телефону</h2>
             <p>Метрика может считать это автоматически (trackLinks) или через цель <b>CLICK_PHONE</b></p>
+            raw number
+            <a href="tel:+79990000000p123" onclick="ym(112966689, 'reachGoal', 'CLICK_PHONE')">
+                +7 (999) 000-00-00
+            </a>
+            raw p123
             <a href="tel:+79990000000p123" onclick="ym(112966689, 'reachGoal', 'CLICK_PHONE')">
                 +7 (999) 000-00-00p123
             </a>
+            
+            p style none
             <a href="tel:+79990000000p123" onclick="ym(112966689, 'reachGoal', 'CLICK_PHONE')">
-                +7 (999) 000-00-00p123
-            </a>
-            <a href="tel:+79990000000p123" onclick="ym(112966689, 'reachGoal', 'CLICK_PHONE')">
-                +7 (999) 000-00-00 доб. 123
-            </a>
+                +7 (999) 000-00-00<p style="display:none">p</p>123
+            </a>, добавочный 123
         </div>
 
         <!-- Тест email -->
