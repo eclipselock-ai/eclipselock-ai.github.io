@@ -102,6 +102,33 @@
                 <button type="submit">Отправить форму</button>
             </form>
         </div>
+        <!-- Тест цели с параметрами -->
+<div class="card test-section">
+    <h2>6. Цель с параметрами</h2>
+    <p>Идентификатор: <b>TEST_PARAMS_GOAL</b></p>
+    <p>Параметры: <code>source</code> и <code>value</code></p>
+    
+    <button onclick="sendParamGoal('banner', 100)">
+        Отправить (Баннер, 100)
+    </button>
+    
+    <button onclick="sendParamGoal('popup', 500)">
+        Отправить (Попап, 500)
+    </button>
+    
+    <div id="param-status" class="status"></div>
+</div>
+
+<script>
+    function sendParamGoal(source, value) {
+        ym(112966689, 'reachGoal', 'TEST_PARAMS_GOAL', {
+            source: source,
+            value: value
+        });
+        document.getElementById('param-status').innerText = 
+            'Отправлено: source=' + source + ', value=' + value;
+    }
+</script>
     </div>
 </body>
 </html>
